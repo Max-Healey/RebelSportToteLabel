@@ -1,0 +1,93 @@
+
+  @media print {
+    body {
+      width: 29.7cm;
+      height: 10cm;
+    }
+
+    select, .invis{
+      display: none;
+    }
+  }
+
+  body {
+    padding-top: 20px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+      Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin: 0 0 0 0;
+  }
+
+  select {
+    font-size: 12px;
+  }
+
+  .label {
+    height: 10cm;
+    width: 14.8cm;
+    border: 1.5px solid black;
+  }
+
+  .label img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .left {
+    width: 7cm;
+    float: left;
+    padding-left: 10px;
+  }
+
+  .right {
+    padding-top: 0cm;
+    width: 7cm;
+    float: right;
+  }
+
+  .right tr {
+
+  }
+
+  th,
+  tr,
+  .label,
+  h1,
+  h3,
+  h4,
+  .right
+   {
+    padding: 0mm 0mm 0mm 0mm;
+    margin: 0mm 0mm 0mm 0mm;
+  }
+
+  .h1 {
+    font-size: 25px;
+    text-wrap: stable;
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+
+  .h2 {
+    font-size: 20px;
+    text-wrap: stable;
+    margin-bottom: 0px;
+    
+  }
+
+  .articlename {
+    font-size: 30px;
+    text-wrap: stable;
+    margin-bottom: 0px;
+  }
+
+
+  .h3 {
+    font-size: 20px;
+    text-wrap: stable;
+    margin-bottom: 0px;
+    font-weight: normal;
+  }
+
+  .barcode {
+    height: 100px;
+  }

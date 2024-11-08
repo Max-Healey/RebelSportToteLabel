@@ -1,0 +1,110 @@
+<doctype! html/>
+
+<script> 
+
+function getArticleInfo(s) {
+  let PLU_regex = new RegExp("PLU Number\n(?!PLU Description)(.*)");
+  let Name_regex = new RegExp("PLU Description\n(?!Store Number)([^,\n]*)");
+  let VA_regex = new RegExp("Vendor Article\n(?!MC Level 1)(.*)");
+  let Colour_regex = new RegExp("Color Value\n(?!Size Value)(.*)");
+  let Brand_regex = new RegExp("Brand(?!Brand Type)\n(.*)");
+  let MerchCat_regex = new RegExp("Merchandise Category(?!Vendor)\n(.*)");
+  let Category_regex = new RegExp("MC Level 1\n(.*)");
+  let EAN_regex = new RegExp("EAN(?!Listing)\n(.*)");
+  
+  let PLU = Name = Colour = VA = Brand = MerchCat = EAN = Cat = "";
+  var r;
+  if (r = s.match(PLU_regex)) {PLU += r[1]}
+  if (r = s.match(Name_regex)) {Name += r[1]}
+  if (r = s.match(VA_regex)) {VA += r[1]}
+  if (r = s.match(Colour_regex)) {Colour += r[1]}
+  if (r = s.match(Brand_regex)) {Brand += r[1]}
+  if (r = s.match(MerchCat_regex)) {MerchCat += r[1]}
+  if (r = s.match(EAN_regex)) {EAN += r[1]}
+  if (r = s.match(Category_regex)) {Cat += r[1]}
+
+
+  
+  if (Brand == "Lorna Jane") {
+    Brand = "lornajane";
+  }
+  if (Brand == "НОКА") {
+    Brand = "HOKA";
+  }
+  if (MerchCat == "830704") {
+    Colour = "";
+  }
+  if (MerchCat == "39372 830704") {
+    Colour = "";
+  }
+  
+  let article = {"PLU": PLU, "Name": Name, "VenderArticle": VA, "Colour": Colour, "Brand": Brand, "EAN": EAN.replace(" ", ""), "Cat": Cat};
+  window.alert(Cat);
+  return article;
+}
+
+
+
+function createImage() {
+  var articles = [];
+    for (i=1; i<5; i++) {
+     input = document.getElementById("Text" + i);
+     articles.push(getArticleInfo(input.value));
+  }
+  let select = document.getElementById("cat");
+	
+  localStorage.setItem("articles", JSON.stringify(articles));
+  localStorage.setItem("category", select.value);
+  console.log(select.value);
+  
+  window.location.href = "label.html"
+  
+  // Store
+	//localStorage.setItem("json", JSON.stringify(json));
+	// Retrieve
+	//console.log(JSON.parse(localStorage.getItem("json")));
+
+}
+
+
+</script>
+<style>
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+      Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+</style>
+<body>
+<h1> GENERATE TOTE LABELS </h1>
+<h5> Label 1 </h5>
+<textarea id="Text1" cols="150" rows="5"></textarea><br>
+<h5> Label 2 </h5>
+<textarea id="Text2" cols="150" rows="5"></textarea><br>
+<h5> Label 3 </h5>
+<textarea id="Text3" cols="150" rows="5"></textarea><br>
+<h5> Label 4 </h5>
+<textarea id="Text4" cols="150" rows="5"></textarea>
+<br>
+<br>
+<select id="cat" sytle="">
+<optgroup style="font-size: larger;">
+<option value="ACCESSORIES"> ACCESSORIES </option>
+<option value="BOYS"> BOYS </option>
+<option value="COMPRESSION"> COMPRESSION </option>
+<option value="CRICKET"> CRICKET </option>
+<option value="GIRLS"> GIRLS </option>
+<option value="KIDS"> KIDS </option>
+<option value="LICENSED"> LICENSED </option>
+<option value="MENS"> MENS </option>
+<option value="SLIDES"> SLIDES </option>
+<option value="SOCKS"> SOCKS </option>
+<option value="SWIM"> SWIM </option>
+<option value="WOMENS"> WOMENS </option>
+</optgroup>
+</select>
+
+<button onclick="createImage()"> GENERATE </button>
+
+</body>
+
+
