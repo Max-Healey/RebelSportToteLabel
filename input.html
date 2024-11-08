@@ -39,7 +39,7 @@ function getArticleInfo(s) {
   }
   
   let article = {"PLU": PLU, "Name": Name, "VenderArticle": VA, "Colour": Colour, "Brand": Brand, "EAN": EAN.replace(" ", ""), "Cat": Cat};
-  window.alert(Cat);
+
   return article;
 }
 
@@ -55,8 +55,7 @@ function createImage() {
 	
   localStorage.setItem("articles", JSON.stringify(articles));
   localStorage.setItem("category", select.value);
-  console.log(select.value);
-  
+
   window.location.href = "label.html"
   
   // Store
