@@ -1,0 +1,329 @@
+<DOCTYPE! html />
+<script src="new_output.js"></script>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th>
+        <div class="label">
+          <table class="left">
+            <tr>
+              <th><img name="brandImgbox" style="height: 1.5cm" onerror="typeBrand(0)"><h1 name="brandText" style="font-size: 0;"></h1></th>
+            </tr>
+            <tr>
+              <th><img name="photoImgbox" onclick="nextImage(0)" onerror="imageFetchError(0)" style="height: 8cm; width: 100%"></th>
+            </tr>
+            <tr>
+              <th><img name="typeImgbox" style="height: 0cm"> </th>
+            </tr>
+            <th>
+              <select name="style-select" id="type-select1" onchange="styleChanged(0)">
+                <div class="options">
+                <option value="0">--Please choose an option--</option>
+                <option value="bikinis">bikinis</option>
+                <option value="bras">bras</option>
+                <option value="briefs">briefs</option>
+                <option value="fleececrew">fleececrew</option>
+                <option value="fulllengthtight">fulllengthtight</option>
+                <option value="hat">hat</option>
+                <option value="headband">headband</option>
+                <option value="hoodie">hoodie</option>
+                <option value="longpants">longpants</option>
+                <option value="longsleeve">longsleeve</option>
+                <option value="onepiece">onepiece</option>
+                <option value="polo">polo</option>
+                <option value="quaterzip">quaterzip</option>
+                <option value="shorts">shorts</option>
+                <option value="shortslong">shortslong</option>
+                <option value="singlet">singlet</option>
+                <option value="slides">slides</option>
+                <option value="socks">socks</option>
+                <option value="tanksleeveless">tanksleeveless</option>
+                <option value="trunks">trunks</option>
+                <option value="tshirt">tshirt</option>
+                <option value="ziptroughhoodie">ziptroughhoodie</option>
+                <option value="zipthroughhoodie">zipthroughhoodie</option>
+              </div>
+              </select>
+            </th>
+          </table>
+          <table class="right", style="padding-top: 0;">
+            <tr>
+              <th>
+                <p class="h1" name="category"><p>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="articlename" name="articleName"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h3" name="articleColour"></h2>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h2" name="venderArticle"></h3>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="plu" name="articlePLU" style="font-size: 55px"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                  <img class="barcode" name="barcode">
+              </th>
+            </tr>
+          </table>
+        </div>
+      </th>
+      <!-------------------------------------------------------------------------->
+      <th>
+        <div class="label">
+          <table class="left">
+            <tr>
+              <th><img name="brandImgbox" style="height: 1.5cm" onerror="typeBrand(1)"><h1 name="brandText" style="font-size: 0;"></h1></th>
+            </tr>
+            <tr>
+              <th><img name="photoImgbox" onclick="nextImage(1)" onerror="imageFetchError(1)" style="height: 8cm; width: 100%"></th>
+            </tr>
+            <tr>
+              <th><img name="typeImgbox" style="height: 0cm"> </th>
+            </tr>
+            <th>
+              <select name="style-select" id="type-select1" onchange="styleChanged(1)">
+                <div class="options">
+                <option value="0">--Please choose an option--</option>
+                <option value="bikinis">bikinis</option>
+                <option value="bras">bras</option>
+                <option value="briefs">briefs</option>
+                <option value="fleececrew">fleececrew</option>
+                <option value="fulllengthtight">fulllengthtight</option>
+                <option value="hat">hat</option>
+                <option value="headband">headband</option>
+                <option value="hoodie">hoodie</option>
+                <option value="longpants">longpants</option>
+                <option value="longsleeve">longsleeve</option>
+                <option value="onepiece">onepiece</option>
+                <option value="polo">polo</option>
+                <option value="quaterzip">quaterzip</option>
+                <option value="shorts">shorts</option>
+                <option value="shortslong">shortslong</option>
+                <option value="singlet">singlet</option>
+                <option value="slides">slides</option>
+                <option value="socks">socks</option>
+                <option value="tanksleeveless">tanksleeveless</option>
+                <option value="trunks">trunks</option>
+                <option value="tshirt">tshirt</option>
+                <option value="ziptroughhoodie">ziptroughhoodie</option>
+                <option value="zipthroughhoodie">zipthroughhoodie</option>
+              </div>
+              </select>
+            </th>
+          </table>
+          <table class="right", style="padding-top: 0;">
+            <tr>
+              <th>
+                <p class="h1" name="category"><p>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="articlename" name="articleName"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h3" name="articleColour"></h2>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h2" name="venderArticle"></h3>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="plu" name="articlePLU" style="font-size: 60px"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                  <img name="barcode" style="height: 70px;">
+              </th>
+            </tr>
+          </table>
+        </div>
+      </th>
+
+    </tr>
+    <!---------------------------------------------------------------------------------------------------------------------------->
+    <tr>
+      <th>
+        <div class="label">
+          <table class="left">
+            <tr>
+              <th><img name="brandImgbox" style="height: 1.5cm" onerror="typeBrand(2)"><h1 name="brandText" style="font-size: 0"></h1></th>
+            </tr>
+            <tr>
+              <th><img name="photoImgbox" onclick="nextImage(2)" onerror="imageFetchError(2)" style="height: 8cm; width: 100%"></th>
+            </tr>
+            <tr>
+              <th><img name="typeImgbox" style="height: 0cm"> </th>
+            </tr>
+            <th>
+              <select name="style-select" id="type-select1" onchange="styleChanged(2)">
+                <div class="options">
+                <option value="0">--Please choose an option--</option>
+                <option value="bikinis">bikinis</option>
+                <option value="bras">bras</option>
+                <option value="briefs">briefs</option>
+                <option value="fleececrew">fleececrew</option>
+                <option value="fulllengthtight">fulllengthtight</option>
+                <option value="hat">hat</option>
+                <option value="headband">headband</option>
+                <option value="hoodie">hoodie</option>
+                <option value="longpants">longpants</option>
+                <option value="longsleeve">longsleeve</option>
+                <option value="onepiece">onepiece</option>
+                <option value="polo">polo</option>
+                <option value="quaterzip">quaterzip</option>
+                <option value="shorts">shorts</option>
+                <option value="shortslong">shortslong</option>
+                <option value="singlet">singlet</option>
+                <option value="slides">slides</option>
+                <option value="socks">socks</option>
+                <option value="tanksleeveless">tanksleeveless</option>
+                <option value="trunks">trunks</option>
+                <option value="tshirt">tshirt</option>
+                <option value="ziptroughhoodie">ziptroughhoodie</option>
+                <option value="zipthroughhoodie">zipthroughhoodie</option>
+              </div>
+              </select>
+            </th>
+          </table>
+          <table class="right", style="padding-top: 0;">
+            <tr>
+              <th>
+                <p class="h1" name="category"><p>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="articlename" name="articleName"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h3" name="articleColour"></h2>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h2" name="venderArticle"></h3>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="plu" name="articlePLU" style="font-size: 60px"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                  <img name="barcode" style="height: 70px;">
+              </th>
+            </tr>
+          </table>
+        </div>
+      </th>
+      <!-------------------------------------------------------------------------->
+      <th>
+        <div class="label">
+          <table class="left">
+            <tr>
+              <th><img name="brandImgbox" style="height: 1.5cm" onerror="typeBrand(3)"><h1 name="brandText" style="font-size: 0;"></h1></th>
+            </tr>
+            <tr>
+              <th><img name="photoImgbox" onclick="nextImage(3)" onerror="imageFetchError(3)" style="height: 8cm; width: 100%"></th>
+            </tr>
+            <tr>
+              <th><img name="typeImgbox" style="height: 0cm"> </th>
+            </tr>
+            <th>
+              <select name="style-select" id="type-select1" onchange="styleChanged(3)">
+                <div class="options">
+                <option value="0">--Please choose an option--</option>
+                <option value="bikinis">bikinis</option>
+                <option value="bras">bras</option>
+                <option value="briefs">briefs</option>
+                <option value="fleececrew">fleececrew</option>
+                <option value="fulllengthtight">fulllengthtight</option>
+                <option value="hat">hat</option>
+                <option value="headband">headband</option>
+                <option value="hoodie">hoodie</option>
+                <option value="longpants">longpants</option>
+                <option value="longsleeve">longsleeve</option>
+                <option value="onepiece">onepiece</option>
+                <option value="polo">polo</option>
+                <option value="quaterzip">quaterzip</option>
+                <option value="shorts">shorts</option>
+                <option value="shortslong">shortslong</option>
+                <option value="singlet">singlet</option>
+                <option value="slides">slides</option>
+                <option value="socks">socks</option>
+                <option value="tanksleeveless">tanksleeveless</option>
+                <option value="trunks">trunks</option>
+                <option value="tshirt">tshirt</option>
+                <option value="ziptroughhoodie">ziptroughhoodie</option>
+                <option value="zipthroughhoodie">zipthroughhoodie</option>
+              </div>
+              </select>
+            </th>
+          </table>
+          <table class="right", style="padding-top: 0;">
+            <tr>
+              <th>
+                <p class="h1" name="category"><p>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="articlename" name="articleName"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h3" name="articleColour"></h2>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="h2" name="venderArticle"></h3>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="plu" name="articlePLU" style="font-size: 60px"></h1>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                  <img name="barcode" style="height: 70px;">
+              </th>
+            </tr>
+          </table>
+        </div>
+      </th>
+
+    </tr>
+  </table>
+  <button class="back" onclick="back()">Back</button>
+  <button class="next" onclick="next()">Next</button>
+</body>
