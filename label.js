@@ -36,6 +36,9 @@ function onLoad() {
       imgbox.src = articles[i]["Image"];
       brandImgbox.src = BRANDPREFIX + articles[i]["Brand"].toLowerCase() + "-black.svg";
       barcode.src = "https://barcodeapi.org/api/EAN13/" + articles[i]["EAN"];
+      if (barcode.src == "https://barcodeapi.org/api/EAN13/" || barcode.src == "https://barcodeapi.org/api/EAN13/undefined") {
+        barcode.classList.add("invis");
+      }
     }
     else {
       imgbox.src = "";
@@ -126,6 +129,10 @@ function imageFetchError(i) {
     imageNumbers[i]=-1;
     nextImage(i);
   }
+}
+
+function clearBarcode(i) {
+  console.log("ERRRRRRRRRORRR");
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
