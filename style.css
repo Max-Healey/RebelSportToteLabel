@@ -68,7 +68,7 @@
   }
 
   .h2 {
-    font-size: 20px;
+    font-size: 0px;
     text-wrap: stable;
     margin-bottom: 0px;
     
@@ -82,7 +82,7 @@
 
 
   .h3 {
-    font-size: 20px;
+    font-size: 0px;
     text-wrap: stable;
     margin-bottom: 0px;
     font-weight: normal;
