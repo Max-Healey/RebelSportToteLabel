@@ -4,9 +4,9 @@ const PICPREFIX = "https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandw
 var imageNumbers = [0,0,0,0];
 
 function onLoad() {
+  console.log("HELLO")
   let articles = JSON.parse(localStorage.getItem("articles"));
   
-
   for (i = 0; i < 4; i++) {
     let brandImgbox = document.getElementsByName("brandImgbox")[i];
     let articlePLU = document.getElementsByName("articlePLU")[i];
@@ -16,57 +16,62 @@ function onLoad() {
     let imgbox = document.getElementsByName("photoImgbox")[i];
     let articleCat = document.getElementsByName("category")[i];
     let barcode = document.getElementsByName("barcode")[i];
-    let category = articles[i]["Cat"];
-
+    
     articlePLU.contentEditable = articleName.contentEditable = venderArticle.contentEditable = 
     articleColour.contentEditable = articleColour.contentEditable = articleCat.contentEditable 
     = "plaintext-only";
-
+    console.log(articles[i]);
+    
     let PLU = articles[i]["PLU"];
-    let cutPLU = PLU.slice(0, 6);
-
-    articlePLU.innerText = cutPLU;
-    articleName.innerText = articles[i]["Name"];
-    articleColour.innerText = articles[i]["Colour"].toUpperCase();
-    venderArticle.innerText = articles[i]["VenderArticle"];
-    articleCat.innerText = category.replace(/[0-9]/g, '');
-    
-    updateImageWithArticle(imgbox, articles[i]);
     if (PLU) {
+      console.log("hhhhh")
+      let cutPLU = PLU.slice(0, 6);
+
+      articlePLU.innerText = cutPLU;
+      articleName.innerText = articles[i]["Name"];
+      articleColour.innerText = articles[i]["Colour"].toUpperCase();
+      venderArticle.innerText = articles[i]["VenderArticle"];
+      articleCat.innerText = articles[i]["Cat"].replace(/[0-9]/g, '');
+
+      imgbox.src = articles[i]["Image"];
       brandImgbox.src = BRANDPREFIX + articles[i]["Brand"].toLowerCase() + "-black.svg";
-      
       barcode.src = "https://barcodeapi.org/api/EAN13/" + articles[i]["EAN"];
-      console.log(articles[i].EAN)
     }
-    
-    //Add an onerror to just write the brand-name
+    else {
+      imgbox.src = "";
+    }
+
   }
 }
 
 function updateImageWithArticle(imgbox, article, number=0) {
   imageNumbers[i] = number;
   let PLU = article["PLU"];
-  let cutPLU = PLU.slice(0, 6);
-  let basePLU = cutPLU;
-  let urlcolour = "";
-  if (PLU.length > 6) { //clothing item
-      let colour = article["Colour"].toLowerCase().replace('purp','purple');
-      if (colour) {
-        let colours = colour.split('/');
-        urlcolour = "_" + colour;
-        if (colours.length > 1) {
-          urlcolour = "_" + colours[0] + colours[1];
+  if (PLU) {
+    let cutPLU = PLU.slice(0, 6);
+    if (number == 0) {
+      imgbox.src = article["image"];
+      return;
+    }
+    let urlcolour = "";
+    if (PLU.length > 6) {
+        let colour = article["Colour"].toLowerCase().replace('purp','purple');
+        if (colour) {
+          let colours = colour.split('/');
+          urlcolour = "_" + colour;
+          if (colours.length > 1) {
+            urlcolour = "_" + colours[0] + colours[1];
+          }
         }
-      }
-      basePLU += "01";
+        basePLU += "01";
+    }
+    
+    let imageUrl = basePLU + urlcolour;
+    if (number) {
+      imageUrl = basePLU + "-0" + (number-1) + urlcolour;
+    }
+    imgbox.src = PICPREFIX + basePLU + "/Rebel_" + imageUrl + "_hi-res.jpg?&sw=150&sh=150&q=61";
   }
-  
-
-  let imageUrl = basePLU + urlcolour;
-  if (number) {
-    imageUrl = basePLU + "-0" + (number-1) + urlcolour;
-  }
-  imgbox.src = PICPREFIX + basePLU + "/Rebel_" + imageUrl + "_hi-res.jpg?&sw=150&sh=150&q=61";
 }
 
 function styleChanged(i) {
@@ -84,12 +89,11 @@ function styleChanged(i) {
     imgbox.style.height = '0cm'
     photo.style.height = '8cm'
     photo.style.width = '8cm'
-    return;
     updateImageWithArticle(imgbox, article);
     
     return;
   }
-  //imageNumbers[i] = -1;
+
   imgbox.src = "images/0.png";
   imgbox.style.display = '';
   imgbox.style.height = '5cm'
@@ -101,12 +105,12 @@ function styleChanged(i) {
 function nextImage(i) {
   let imgbox = document.getElementsByName("photoImgbox")[i];
   let article = JSON.parse(localStorage.getItem("articles"))[i];
-  console.log(article);
   imageNumbers[i] = imageNumbers[i] + 1;
   updateImageWithArticle(imgbox, article, imageNumbers[i]);
 }
 
 function imageFetchError(i) {
+
   let imgbox = document.getElementsByName("photoImgbox")[i];
   if (imageNumbers[i] == 0) {
     console.log(i, imgbox.src);
@@ -114,7 +118,7 @@ function imageFetchError(i) {
     imgbox.classList.add("invis");
     categorytxt = document.getElementsByName("category")[i];
     categorytxt.classList.add("invis");
-  }
+  } 
   else if (imageNumbers[i] == 1) {
     alert("Only one image");
   }
