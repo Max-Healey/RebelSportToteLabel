@@ -96,10 +96,7 @@ function generateFromPLU() {
     window.alert("You must enter Barcodes");
     return;
   }
-  if (barcodes.length != plus.length) {
-    window.alert("You must enter the same amount of barcodes as PLUs")
-    return;
-  }
+
 
   articles = []
   for (var i = 0; i < plus.length; i++) {
