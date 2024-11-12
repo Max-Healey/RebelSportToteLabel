@@ -4,9 +4,12 @@ function onLoad() {
   console.log(localStorage.getItem("articles"));
   let articles = JSON.parse(localStorage.getItem("articles"));
   let current_index = JSON.parse(localStorage.getItem("current_index"))
-
+  
   for (i = 0; i < 4; i++) {
     article = articles[i + current_index];
+    if (!article) {
+      continue;
+    }
     let brandImgbox = document.getElementsByName("brandImgbox")[i];
     let articlePLU = document.getElementsByName("articlePLU")[i];
     let venderArticle = document.getElementsByName("venderArticle")[i];
@@ -36,10 +39,15 @@ function onLoad() {
       imgbox.src = article["image"]
       brandImgbox.src = BRANDPREFIX + article["brand"].toLowerCase().replace("-", "") + "-black.svg";
       barcode.src = "https://barcodeapi.org/api/EAN13/" + article["barcode"];
+      if (barcode.src == "https://barcodeapi.org/api/EAN13/" || barcode.src == "https://barcodeapi.org/api/EAN13/undefined") {
+        barcode.classList.add("invis");
+      }
       articleCat.innerText = article["category"];
       brandText.innerText = article["brand"].replace("-", " ").toUpperCase();
     }
-    
+    else {
+      imgbox.classList.add("invis");
+    }
     //Add an onerror to just write the brand-name
   }
 }
