@@ -25,20 +25,16 @@ function onLoad() {
 
     let PLU = article["plu"];
     
-
-    
-    
     //articleColour.innerText = articles[i]["Colour"].toUpperCase();
     //venderArticle.innerText = articles[i]["VenderArticle"];
     
-    
+    console.log(article);
     if (PLU) {
       PLU = PLU.substring(0,6);
       articlePLU.innerText = PLU;
       articleName.innerText = article["name"].toUpperCase();
-      imgbox.src = IMGPREFIX + article["image"]
+      imgbox.src = article["image"]
       brandImgbox.src = BRANDPREFIX + article["brand"].toLowerCase().replace("-", "") + "-black.svg";
-      
       barcode.src = "https://barcodeapi.org/api/EAN13/" + article["barcode"];
       articleCat.innerText = article["category"];
       brandText.innerText = article["brand"].replace("-", " ").toUpperCase();
@@ -77,7 +73,15 @@ function styleChanged(i) {
 function next() {
   let current_index = JSON.parse(localStorage.getItem("current_index"))
   localStorage.setItem("current_index", current_index + 4);
-  window.location.href = "label.html";
+  window.location.href = "label new.html";
+}
+
+function back() {
+  let current_index = JSON.parse(localStorage.getItem("current_index"))
+  if (current_index != 0) {
+    localStorage.setItem("current_index", current_index - 4);
+    window.location.href = "label new.html";
+  }
 }
 
 function typeBrand(i) {
