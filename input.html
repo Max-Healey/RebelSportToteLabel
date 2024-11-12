@@ -1,50 +1,47 @@
 <doctype! html/>
 
-
 <style>
 body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
       Helvetica, Arial, "Lucida Grande", sans-serif;
   }
 </style>
-<body>
-<h1> GENERATE TOTE LABELS </h1>
-<h5> Label 1 </h5>
-<textarea id="Text1" cols="150" rows="5"></textarea><br>
-<h5> Label 2 </h5>
-<textarea id="Text2" cols="150" rows="5"></textarea><br>
-<h5> Label 3 </h5>
-<textarea id="Text3" cols="150" rows="5"></textarea><br>
-<h5> Label 4 </h5>
-<textarea id="Text4" cols="150" rows="5"></textarea>
-<br>
-<br>
-<select id="cat" sytle="">
-<optgroup style="font-size: larger;">
-<option value="ACCESSORIES"> ACCESSORIES </option>
-<option value="BOYS"> BOYS </option>
-<option value="COMPRESSION"> COMPRESSION </option>
-<option value="CRICKET"> CRICKET </option>
-<option value="GIRLS"> GIRLS </option>
-<option value="KIDS"> KIDS </option>
-<option value="LICENSED"> LICENSED </option>
-<option value="MENS"> MENS </option>
-<option value="SLIDES"> SLIDES </option>
-<option value="SOCKS"> SOCKS </option>
-<option value="SWIM"> SWIM </option>
-<option value="WOMENS"> WOMENS </option>
-</optgroup>
-</select>
 
-<button onclick="createImage()"> GENERATE </button>
-<button onclick="test_json()"> NEW METHOD </button>
-<textarea id="plus" cols="150" rows="5"></textarea>
-<textarea id="barcodes" cols="150" rows="5"></textarea>
+<body>
+<center>
+<h1> REBEL SPORT - GENERATE TOTE LABELS </h1>
+</center>
+<table>
+<th>
+<h2>Sap Report Method: </h2>
+<h5> Label 1 </h5>
+<textarea id="Text1" cols="65" rows="3"></textarea><br>
+<h5> Label 2 </h5>
+<textarea id="Text2" cols="65" rows="3"></textarea><br>
+<h5> Label 3 </h5>
+<textarea id="Text3" cols="65" rows="3"></textarea><br>
+<h5> Label 4 </h5>
+<textarea id="Text4" cols="65" rows="3"></textarea>
+<br>
+<br>
+<button onclick="generateFromSAP()"> GENERATE FROM SAP </button>
+</th>
+<th>
+<h2>Offsite Stock Report Method: </h2>
+<h5> Enter PLUs </h5>
+<textarea id="plus" cols="11" rows="11"></textarea>
+<h5> Enter Barcodes </h5>
+<textarea id="barcodes" cols="11" rows="10"></textarea>
+<br><br>
+<button onclick="generateFromPLU()"> GENERATE FROM PLUs </button>
+</th>
+</table>
 
 <script src="data.js"></script>
 <script> 
 
 function getArticleInfo(s) {
+  
   let PLU_regex = new RegExp("PLU Number\n(?!PLU Description)(.*)");
   let Name_regex = new RegExp("PLU Description\n(?!Store Number)([^,\n]*)");
   let VA_regex = new RegExp("Vendor Article\n(?!MC Level 1)(.*)");
@@ -64,73 +61,67 @@ function getArticleInfo(s) {
   if (r = s.match(MerchCat_regex)) {MerchCat += r[1]}
   if (r = s.match(EAN_regex)) {EAN += r[1]}
   if (r = s.match(Category_regex)) {Cat += r[1]}
-
-
-  
-  if (Brand == "Lorna Jane") {
-    Brand = "lornajane";
-  }
-  if (Brand == "НОКА") {
-    Brand = "HOKA";
-  }
-  if (MerchCat == "830704") {
-    Colour = "";
-  }
-  if (MerchCat == "39372 830704") {
-    Colour = "";
-  }
   
   let article = {"PLU": PLU, "Name": Name, "VenderArticle": VA, "Colour": Colour, "Brand": Brand, "EAN": EAN.replace(" ", ""), "Cat": Cat};
-
+  if (PLU) {
+    if (jsonData[PLU.substring(0,6)]) {
+      article["Image"] = jsonData[PLU.substring(0,6)]["image"]; 
+    }
+    else {
+      article["Image"] = "missingno.png";
+    }
+  }
   return article;
 }
 
-
-
-function createImage() {
+function generateFromSAP() {
   var articles = [];
-    for (i=1; i<5; i++) {
-     input = document.getElementById("Text" + i);
-     articles.push(getArticleInfo(input.value));
+  for (var i = 1; i < 5; i++) {
+    input = document.getElementById("Text" + i);
+    articles.push(getArticleInfo(input.value));
   }
-  let select = document.getElementById("cat");
-	
   localStorage.setItem("articles", JSON.stringify(articles));
-  localStorage.setItem("category", select.value);
-
   window.location.href = "label.html"
-  
-  // Store
-	//localStorage.setItem("json", JSON.stringify(json));
-	// Retrieve
-	//console.log(JSON.parse(localStorage.getItem("json")));
-
 }
 
+function generateFromPLU() {
+  plus = document.getElementById("plus").value.split("\n");
+  barcodes = document.getElementById("barcodes").value.split("\n");
 
-function test_json() {
-      // Now you can directly use jsonData since it's loaded from data.js
-      plus = document.getElementById("plus").value.split("\n");
-      barcodes = document.getElementById("barcodes").value.split("\n");
-      articles = []
-      for (var i = 0; i < plus.length; i++) {
-        article_data = jsonData[plus[i].substring(0,6)];
-        console.log(article_data);
-        article_data["plu"] = plus[i];
-        article_data["barcode"] = barcodes[i];
-        articles.push(article_data);
-        //GOTTA STRINGIFY FIRST
-      }
-      window.alert()
-      localStorage.setItem("articles", JSON.stringify(articles));
-      localStorage.setItem("current_index", 0);
-window.location.href = "label.html";
+  if (!plus.length) {
+    window.alert("You must enter PLUs");
+    return;
+  }
+  if (!barcodes.length) {
+    window.alert("You must enter Barcodes");
+    return;
+  }
+  if (barcodes.length != plus.length) {
+    window.alert("You must enter the same amount of barcodes as PLUs")
+    return;
+  }
+
+  articles = []
+  for (var i = 0; i < plus.length; i++) {
+    if (plus[i].length < 6) {
+      window.alert("Invalid PLU: " + plus[i]);
+      return;
+    }
+    article_data = jsonData[plus[i].substring(0,6)];
+    if (!article_data) {
+      window.alert("PLU not found: " + plus[i]);
+      return;
+    }
+    article_data["plu"] = plus[i];
+    article_data["barcode"] = barcodes[i];
+    articles.push(article_data);
+  }
+
+  localStorage.setItem("articles", JSON.stringify(articles));
+  localStorage.setItem("current_index", 0);
+  window.location.href = "label new.html";
 }
-
-
-
 
 </script>
+
 </body>
-
-
