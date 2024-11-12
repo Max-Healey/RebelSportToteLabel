@@ -1,5 +1,47 @@
 <doctype! html/>
 
+
+<style>
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+      Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+</style>
+<body>
+<h1> GENERATE TOTE LABELS </h1>
+<h5> Label 1 </h5>
+<textarea id="Text1" cols="150" rows="5"></textarea><br>
+<h5> Label 2 </h5>
+<textarea id="Text2" cols="150" rows="5"></textarea><br>
+<h5> Label 3 </h5>
+<textarea id="Text3" cols="150" rows="5"></textarea><br>
+<h5> Label 4 </h5>
+<textarea id="Text4" cols="150" rows="5"></textarea>
+<br>
+<br>
+<select id="cat" sytle="">
+<optgroup style="font-size: larger;">
+<option value="ACCESSORIES"> ACCESSORIES </option>
+<option value="BOYS"> BOYS </option>
+<option value="COMPRESSION"> COMPRESSION </option>
+<option value="CRICKET"> CRICKET </option>
+<option value="GIRLS"> GIRLS </option>
+<option value="KIDS"> KIDS </option>
+<option value="LICENSED"> LICENSED </option>
+<option value="MENS"> MENS </option>
+<option value="SLIDES"> SLIDES </option>
+<option value="SOCKS"> SOCKS </option>
+<option value="SWIM"> SWIM </option>
+<option value="WOMENS"> WOMENS </option>
+</optgroup>
+</select>
+
+<button onclick="createImage()"> GENERATE </button>
+<button onclick="test_json()"> NEW METHOD </button>
+<textarea id="plus" cols="150" rows="5"></textarea>
+<textarea id="barcodes" cols="150" rows="5"></textarea>
+
+<script src="data.js"></script>
 <script> 
 
 function getArticleInfo(s) {
@@ -66,44 +108,29 @@ function createImage() {
 }
 
 
+function test_json() {
+      // Now you can directly use jsonData since it's loaded from data.js
+      plus = document.getElementById("plus").value.split("\n");
+      barcodes = document.getElementById("barcodes").value.split("\n");
+      articles = []
+      for (var i = 0; i < plus.length; i++) {
+        article_data = jsonData[plus[i].substring(0,6)];
+        console.log(article_data);
+        article_data["plu"] = plus[i];
+        article_data["barcode"] = barcodes[i];
+        articles.push(article_data);
+        //GOTTA STRINGIFY FIRST
+      }
+      window.alert()
+      localStorage.setItem("articles", JSON.stringify(articles));
+      localStorage.setItem("current_index", 0);
+window.location.href = "label.html";
+}
+
+
+
+
 </script>
-<style>
-body {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-      Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-</style>
-<body>
-<h1> GENERATE TOTE LABELS </h1>
-<h5> Label 1 </h5>
-<textarea id="Text1" cols="150" rows="5"></textarea><br>
-<h5> Label 2 </h5>
-<textarea id="Text2" cols="150" rows="5"></textarea><br>
-<h5> Label 3 </h5>
-<textarea id="Text3" cols="150" rows="5"></textarea><br>
-<h5> Label 4 </h5>
-<textarea id="Text4" cols="150" rows="5"></textarea>
-<br>
-<br>
-<select id="cat" sytle="">
-<optgroup style="font-size: larger;">
-<option value="ACCESSORIES"> ACCESSORIES </option>
-<option value="BOYS"> BOYS </option>
-<option value="COMPRESSION"> COMPRESSION </option>
-<option value="CRICKET"> CRICKET </option>
-<option value="GIRLS"> GIRLS </option>
-<option value="KIDS"> KIDS </option>
-<option value="LICENSED"> LICENSED </option>
-<option value="MENS"> MENS </option>
-<option value="SLIDES"> SLIDES </option>
-<option value="SOCKS"> SOCKS </option>
-<option value="SWIM"> SWIM </option>
-<option value="WOMENS"> WOMENS </option>
-</optgroup>
-</select>
-
-<button onclick="createImage()"> GENERATE </button>
-
 </body>
 
 
