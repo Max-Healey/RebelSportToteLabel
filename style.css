@@ -5,7 +5,7 @@
       height: 10cm;
     }
 
-    select, .invis{
+    select, .invis, .next, .back{
       display: none;
     }
   }
@@ -44,9 +44,6 @@
     float: right;
   }
 
-  .right tr {
-
-  }
 
   th,
   tr,
