@@ -15,7 +15,7 @@ function onLoad() {
     let articleColour = document.getElementsByName("articleColour")[i];
     let imgbox = document.getElementsByName("photoImgbox")[i];
     let articleCat = document.getElementsByName("category")[i];
-    let barcode = document.getElementsByName("barcode")[i];
+
     
     articlePLU.contentEditable = articleName.contentEditable = venderArticle.contentEditable = 
     articleColour.contentEditable = articleColour.contentEditable = articleCat.contentEditable 
@@ -34,11 +34,8 @@ function onLoad() {
       articleCat.innerText = articles[i]["Cat"].replace(/[0-9]/g, '');
 
       imgbox.src = articles[i]["Image"];
-      brandImgbox.src = BRANDPREFIX + articles[i]["Brand"].toLowerCase() + "-black.svg";
-      barcode.src = "https://barcodeapi.org/api/EAN13/" + articles[i]["EAN"];
-      if (barcode.src == "https://barcodeapi.org/api/EAN13/" || barcode.src == "https://barcodeapi.org/api/EAN13/undefined") {
-        barcode.classList.add("invis");
-      }
+      brandImgbox.src = BRANDPREFIX + articles[i]["Brand"].toLowerCase().replace(" ", "") + "-black.svg";
+
     }
     else {
       imgbox.src = "";
@@ -135,9 +132,7 @@ function imageFetchError(i) {
   }
 }
 
-function clearBarcode(i) {
-  console.log("ERRRRRRRRRORRR");
-}
+
 
 window.addEventListener('DOMContentLoaded', (event) => {
   onLoad();

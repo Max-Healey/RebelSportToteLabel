@@ -61,20 +61,20 @@ h4,
 }
 
 .category {
-  font-size: 70px;
+  font-size: 90px;
   text-wrap: stable;
   margin-bottom: 20px;
   font-weight: normal;
 }
 
 .articlename {
-  font-size: 60px;
+  font-size: 70px;
   text-wrap: stable;
   margin-bottom: 0px;
 }
 
 .vender {
-  font-size: 40px;
+  font-size: 50px;
   text-wrap: stable;
   margin-bottom: 20px;
   font-weight: normal;
@@ -82,20 +82,20 @@ h4,
 }
 
 .colour {
-  font-size: 40px;
-  text-wrap: stable;
-  margin-bottom: 0px;
-  font-weight: bold;
-}
-
-.plu {
-  font-size: 100px;
+  font-size: 50px;
   text-wrap: stable;
   margin-bottom: 0px;
   font-weight: normal;
 }
 
+.plu {
+  font-size: 130px;
+  text-wrap: stable;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
 .barcode {
-  height: 200px;
+  height: 0px;
 }
 

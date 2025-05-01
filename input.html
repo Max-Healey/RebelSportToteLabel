@@ -53,8 +53,10 @@ function getArticleInfo(s) {
   if (r = s.match(MerchCat_regex)) {MerchCat += r[1]}
   if (r = s.match(EAN_regex)) {EAN += r[1]}
   if (r = s.match(Category_regex)) {Cat += r[1]}
+
   
-  let article = {"PLU": PLU, "Name": Name, "VenderArticle": VA, "Colour": Colour, "Brand": Brand, "EAN": EAN.replace(" ", ""), "Cat": Cat};
+  
+  let article = {"PLU": PLU, "Name": Name, "VenderArticle": VA, "Colour": Colour, "Brand": Brand, "EAN": EAN.replace(" ", ""), "Cat": Cat.replace(" ", "")};
   if (PLU) {
     if (jsonData[PLU.substring(0,6)]) {
       article["Image"] = jsonData[PLU.substring(0,6)]["image"]; 
