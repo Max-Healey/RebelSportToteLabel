@@ -5,7 +5,7 @@
     height: 21cm;
   }
 
-  select, .invis, .next, .back{
+  select, .invis, .next, .back, .barcode{
     display: none;
   }
 }
