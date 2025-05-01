@@ -88,10 +88,14 @@ function styleChanged(i) {
     let imgbox = document.getElementsByName("typeImgbox")[i];
     let photo = document.getElementsByName("photoImgbox")[i];
     imgbox.src = "images/0.png";
+    if (article.PLU) {
+      "images/Missingno.png";
+    }
     imgbox.style.display = 'hide';
     imgbox.style.height = '0cm'
-    photo.style.height = '8cm'
-    photo.style.width = '8cm'
+    photo.style.height = '7cm'
+    photo.style.width = '7cm'
+    
     updateImageWithArticle(imgbox, article);
     
     return;
@@ -99,7 +103,7 @@ function styleChanged(i) {
 
   imgbox.src = "images/0.png";
   imgbox.style.display = '';
-  imgbox.style.height = '5cm'
+  imgbox.style.height = '15cm'
   photo.style.height = '3cm'
   photo.style.width = '3cm'
   imgbox.src = "images/" + selector.value + ".png";
