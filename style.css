@@ -1,21 +1,22 @@
-
 @media print {
-  body {
-    width: 28cm;
-    height: 21cm;
-  }
-
-  select, .invis, .next, .back, .barcode{
+  select, .invis, .next, .back, .barcode {
     display: none;
   }
 }
 
+@page {
+  margin: 0;
+  size: A4;
+}
+
 body {
-  padding-top: 20px;
-  
+  margin-left: 0;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
-  margin: 0 0 0 0;
+}
+
+.spacer {
+  height: .8cm;
 }
 
 select {
@@ -26,7 +27,7 @@ select {
   height: 21cm;
   width: 31cm;
   border: 1.5px solid black;
-  
+  margin: 0;
 }
 
 .label img {
@@ -35,67 +36,58 @@ select {
 }
 
 .left {
-  width: 14cm;
+  width: 10cm;
   float: left;
-  padding-left: 20px;
+  padding-left: 1cm;
 }
 
 .right {
   text-align: left;
-  width: 14cm;
+  width: 9cm;
   float: right;
   justify-content: left;
+  padding-right: 1cm;
 }
 
-
-th,
-tr,
-.label,
-h1,
-h3,
-h4,
-.right
- {
-  padding: 0mm 0mm 0mm 0mm;
-  margin: 0mm 0mm 0mm 0mm;
+.brandImgBox {
+  height: 3cm;
 }
 
-.category {
+.articleCategoryTxtBox {
   font-size: 90px;
   text-wrap: stable;
   margin-bottom: 20px;
   font-weight: normal;
 }
 
-.articlename {
+.articleNameTxtBox {
   font-size: 70px;
   text-wrap: stable;
   margin-bottom: 0px;
 }
 
-.vender {
+.venderArticleTxtBox {
   font-size: 50px;
   text-wrap: stable;
   margin-bottom: 20px;
   font-weight: normal;
-  
 }
 
-.colour {
+.articleColourTxtBox {
   font-size: 50px;
   text-wrap: stable;
   margin-bottom: 0px;
   font-weight: normal;
 }
 
-.plu {
+.articlePluTxtBox {
   font-size: 130px;
   text-wrap: stable;
   margin-bottom: 0px;
   font-weight: bold;
 }
 
-.barcode {
-  height: 0px;
+.photoImgBox {
+  height: 8cm; 
+  width: 100%;
 }
-

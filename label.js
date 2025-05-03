@@ -3,44 +3,69 @@ const PICPREFIX = "https://www.rebelsport.com.au/dw/image/v2/BBRV_PRD/on/demandw
 
 var imageNumbers = [0,0,0,0];
 
-function onLoad() {
-  console.log("HELLO")
-  let articles = JSON.parse(localStorage.getItem("articles"));
-  
-  for (i = 0; i < 4; i++) {
-    let brandImgbox = document.getElementsByName("brandImgbox")[i];
-    let articlePLU = document.getElementsByName("articlePLU")[i];
-    let venderArticle = document.getElementsByName("venderArticle")[i];
-    let articleName = document.getElementsByName("articleName")[i];
-    let articleColour = document.getElementsByName("articleColour")[i];
-    let imgbox = document.getElementsByName("photoImgbox")[i];
-    let articleCat = document.getElementsByName("category")[i];
 
+function onLoad() {
+  const articles = JSON.parse(localStorage.getItem("articles"));
+  const numLabels = articles.length;
+  let labelTemplate = document.getElementById("label-template");
+  var table;
+  var label;
+
+  for (let i = 0; i < numLabels; i++) {
+    if (i % 2 == 0) {
+        let spacer = document.createElement("div");
+        spacer.className = "spacer";
+        table = document.createElement("table");
+        table.className = "label-table";
+        document.body.appendChild(spacer.cloneNode(1));
+        document.body.appendChild(table);
+        document.body.appendChild(spacer.cloneNode(1));
+    }
+    console.log(labelTemplate);
+    label = labelTemplate.content.querySelector("div").cloneNode(1);
     
-    articlePLU.contentEditable = articleName.contentEditable = venderArticle.contentEditable = 
-    articleColour.contentEditable = articleColour.contentEditable = articleCat.contentEditable 
-    = "plaintext-only";
-    console.log(articles[i]);
+
+    let brandImgbox = label.getElementsByClassName("brandImgBox")[0];
+    let photoImgBox = label.getElementsByClassName("photoImgBox")[0];
+    let articlePluTxtBox = label.getElementsByClassName("articlePluTxtBox")[0];
+    let venderArticleTxtBox = label.getElementsByClassName("venderArticleTxtBox")[0];
+    let articleNameTxtBox = label.getElementsByClassName("articleNameTxtBox")[0];
+    let articleColourTxtBox = label.getElementsByClassName("articleColourTxtBox")[0];
+    let articleCategoryTxtBox = label.getElementsByClassName("articleCategoryTxtBox")[0];
+    let styleSelect = label.getElementsByClassName("style-select")[0]
+
+    brandImgbox.addEventListener("error", () => typeBrand(i), false);
+    photoImgBox.addEventListener("error", () => imageFetchError(i), false);
+    photoImgBox.addEventListener("click", () => nextImage(i), false);
+    styleSelect.addEventListener("change", () => styleChanged(i), false);
+    
+    brandImgbox.onerror = styleChanged;
+
+    articlePluTxtBox.contentEditable = "plaintext-only";
+    articleNameTxtBox.contentEditable = "plaintext-only";
+    venderArticleTxtBox.contentEditable = "plaintext-only";
+    articleColourTxtBox.contentEditable = "plaintext-only";
+    articleColourTxtBox.contentEditable = "plaintext-only";
+    articleCategoryTxtBox.contentEditable = "plaintext-only";
     
     let PLU = articles[i]["PLU"];
     if (PLU) {
-      console.log("hhhhh")
       let cutPLU = PLU.slice(0, 6);
 
-      articlePLU.innerText = cutPLU;
-      articleName.innerText = articles[i]["Name"];
-      articleColour.innerText = articles[i]["Colour"].toUpperCase();
-      venderArticle.innerText = articles[i]["VenderArticle"];
-      articleCat.innerText = articles[i]["Cat"].replace(/[0-9]/g, '');
+      articlePluTxtBox.innerText = cutPLU;
+      articleNameTxtBox.innerText = articles[i]["Name"];
+      articleColourTxtBox.innerText = articles[i]["Colour"].toUpperCase();
+      venderArticleTxtBox.innerText = articles[i]["VenderArticle"];
+      articleCategoryTxtBox.innerText = articles[i]["Cat"].replace(/[0-9]/g, '');
 
-      imgbox.src = articles[i]["Image"];
+      photoImgBox.src = articles[i]["Image"];
       brandImgbox.src = BRANDPREFIX + articles[i]["Brand"].toLowerCase().replace(" ", "") + "-black.svg";
-
     }
+    
     else {
-      imgbox.src = "";
+      photoImgBox.src = "";
     }
-
+    table.insertRow(-1).insertCell().appendChild(label); 
   }
 }
 
@@ -75,15 +100,16 @@ function updateImageWithArticle(imgbox, article, number=0) {
 }
 
 function styleChanged(i) {
-  let selector = document.getElementsByName("style-select")[i];
+  console.log("i", i);
+  let selector = document.getElementsByClassName("style-select")[i];
   let label = document.getElementsByClassName("label")[i];
-  let imgbox = document.getElementsByName("typeImgbox")[i];
-  let photo = document.getElementsByName("photoImgbox")[i];
+  let imgbox = document.getElementsByClassName("typeImgbox")[i];
+  let photo = document.getElementsByClassName("photoImgbox")[i];
 
   if (selector.value == '0') {
     let article = JSON.parse(localStorage.getItem("articles"))[i];
-    let imgbox = document.getElementsByName("typeImgbox")[i];
-    let photo = document.getElementsByName("photoImgbox")[i];
+    let imgbox = document.getElementsByClassName("typeImgbox")[i];
+    let photo = document.getElementsByClassName("photoImgbox")[i];
     imgbox.src = "images/0.png";
     if (article.PLU) {
       "images/Missingno.png";
