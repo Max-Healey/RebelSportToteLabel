@@ -16,7 +16,7 @@ body {
 }
 
 .spacer {
-  height: .8cm;
+  height: 1.7cm;
 }
 
 select {
@@ -24,8 +24,8 @@ select {
 }
 
 .label {
-  height: 21cm;
-  width: 31cm;
+  height: 18.5cm;
+  width: 29cm;
   border: 1.5px solid black;
   margin: 0;
 }
@@ -43,8 +43,8 @@ select {
 
 .right {
   text-align: left;
-  width: 9cm;
-  float: right;
+  width: 17cm;
+  padding-left: 1cm;
   justify-content: left;
   padding-right: 1cm;
 }
@@ -54,14 +54,14 @@ select {
 }
 
 .articleCategoryTxtBox {
-  font-size: 90px;
+  font-size: 70px;
   text-wrap: stable;
   margin-bottom: 20px;
   font-weight: normal;
 }
 
 .articleNameTxtBox {
-  font-size: 70px;
+  font-size: 50px;
   text-wrap: stable;
   margin-bottom: 0px;
 }
