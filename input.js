@@ -21,7 +21,9 @@ function getArticleInfo(s) {
 
     Cat = Cat.replace(" ", "");
     EAN = EAN.replace(" ", "");
-    Brand = Brand.replace("", "");
+    Brand = Brand.replace(" ", "");
+    Brand = Brand.replace("&", "");
+    Brand = Brand.replace(".", "");
     
     let article = {"PLU": PLU, "Name": Name, "VenderArticle": VA, "Colour": Colour, "Brand": Brand, "EAN": EAN, Cat};
     
