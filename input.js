@@ -32,7 +32,7 @@ function getArticleInfo(s) {
         article["Image"] = jsonData[PLU.substring(0,6)]["image"]; 
       }
       else {
-        article["Image"] = "missingno.png";
+        article["Image"] = "images/missingno.png";
       }
     }
   
