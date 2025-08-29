@@ -16,7 +16,7 @@ body {
 }
 
 .spacer {
-  height: 1.7cm;
+  height: 0.5cm;
 }
 
 select {
@@ -24,15 +24,14 @@ select {
 }
 
 .label {
-  height: 18.5cm;
-  width: 29cm;
+  height: 20.75cm;
+  width: 30cm;
   border: 1.5px solid black;
   margin: 0;
 }
 
 .label img {
   max-width: 100%;
-  max-height: 100%;
 }
 
 .left {
@@ -43,10 +42,11 @@ select {
 
 .right {
   text-align: left;
-  width: 17cm;
+  width: 16cm;
   padding-left: 1cm;
   justify-content: left;
   padding-right: 1cm;
+  float: right;
 }
 
 .brandImgBox {
@@ -61,13 +61,14 @@ select {
 }
 
 .articleNameTxtBox {
-  font-size: 50px;
+  font-size: 60px;
   text-wrap: stable;
   margin-bottom: 0px;
+font-weight: bold;
 }
 
 .venderArticleTxtBox {
-  font-size: 50px;
+  font-size: 60px;
   text-wrap: stable;
   margin-bottom: 20px;
   font-weight: normal;
@@ -81,13 +82,17 @@ select {
 }
 
 .articlePluTxtBox {
-  font-size: 130px;
+  font-size: 160px;
   text-wrap: stable;
   margin-bottom: 0px;
   font-weight: bold;
 }
 
 .photoImgBox {
-  height: 8cm; 
+  height: 11cm; 
   width: 100%;
+}
+
+.typeImgBox {
+  height: 16cm;
 }
