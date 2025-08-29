@@ -27,6 +27,7 @@ function onLoad() {
 
     let brandImgbox = label.getElementsByClassName("brandImgBox")[0];
     let photoImgBox = label.getElementsByClassName("photoImgBox")[0];
+    let typeImgBox = label.getElementsByClassName("typeImgBox")[0];
     let articlePluTxtBox = label.getElementsByClassName("articlePluTxtBox")[0];
     let venderArticleTxtBox = label.getElementsByClassName("venderArticleTxtBox")[0];
     let articleNameTxtBox = label.getElementsByClassName("articleNameTxtBox")[0];
@@ -59,12 +60,14 @@ function onLoad() {
       articleCategoryTxtBox.innerText = articles[i]["Cat"].replace(/[0-9]/g, '');
 
       photoImgBox.src = articles[i]["Image"];
+      
       brandImgbox.src = BRANDPREFIX + articles[i]["Brand"].toLowerCase().replace(" ", "") + "-black.svg";
     }
     
     else {
-      photoImgBox.src = "";
+      photoImgBox.src = "images/missingno";
     }
+    typeImgBox.style.display = 'none';
     table.insertRow(-1).insertCell().appendChild(label); 
   }
 }
@@ -75,7 +78,7 @@ function updateImageWithArticle(imgbox, article, number=0) {
   if (PLU) {
     let cutPLU = PLU.slice(0, 6);
     if (number == 0) {
-      imgbox.src = article["image"];
+      imgbox.src = article["Image"];
       return;
     }
     let urlcolour = "";
@@ -124,9 +127,9 @@ function styleChanged(i) {
     return;
   }
 
-  imgbox.src = "images/0.png";
+  imgbox.src = "images/missingno.png";
   imgbox.style.display = '';
-  imgbox.style.height = '15cm'
+  imgbox.style  
   photo.style.height = '3cm'
   photo.style.width = '3cm'
   imgbox.src = "images/" + selector.value + ".png";
